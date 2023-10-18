@@ -1,13 +1,19 @@
 import { useState } from 'react'
+import Box from '@mui/material/Box'
+
+import CsvFileUpload from '~/components/csv-file-upload/CsvFileUpload'
+import UserTableContainer from '~/containers/UserTableContainer'
+
+import { DataCsv } from '~/types'
 import '~/App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  const [data, setData] = useState<DataCsv[]>([])
   return (
-    <button onClick={() => setCount((count) => count + 1)}>
-      count is {count}
-    </button>
+    <Box>
+      <CsvFileUpload<DataCsv> setData={setData} />
+      {data.length > 0 && <UserTableContainer data={data} />}
+    </Box>
   )
 }
 
